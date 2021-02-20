@@ -1,6 +1,21 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/services.dart';
+import 'package:logger_flutter/logger_flutter.dart';
+import './utils/logger.dart';
 
 void main() {
+  // var logger = getLogger();
+
+  // logger.d("Logger is working!");
+  // logger.v("Logger is working!");
+  // try {
+  //   var a = 12;
+  //   var b = 0;
+  //   var c = a ~/ b;
+  // } catch (err, st) {
+  //   logger.e('B is zero', err, st);
+  // }
+
   runApp(MyApp());
 }
 
@@ -8,9 +23,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
+    SystemChrome.setPreferredOrientations(
+        [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+    return CupertinoApp(
+      title: 'Clarapulse',
+      theme: const CupertinoThemeData(
         // This is the theme of your application.
         //
         // Try running your application with "flutter run". You'll see the
@@ -18,15 +35,10 @@ class MyApp extends StatelessWidget {
         // changing the primarySwatch below to Colors.green and then invoke
         // "hot reload" (press "r" in the console where you ran "flutter run",
         // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
+        brightness: Brightness.light,
         // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
-        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Clarapulse'),
     );
   }
 }
@@ -65,53 +77,52 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
+    // Future.delayed(Duration(milliseconds: 500), () {
+    //   LogConsole.open(context);
+    // });
+    return CupertinoPageScaffold(
+        navigationBar: CupertinoNavigationBar(
+          // leading: GestureDetector(
+          //   onTap: () {
+          //     debugPrint('Back button tapped');
+          //   },
+          //   child: Row(
+          //     children: <Widget>[
+          //       Icon(CupertinoIcons.arrow_left),
+          //       Text(
+          //         'Back',
+          //         style: TextStyle(
+          //           color: CupertinoColors.activeBlue,
+          //         ),
+          //       ),
+          //     ],
+          //   ),
+          // ),
+          middle: Text(widget.title),
+          trailing: GestureDetector(
+            onTap: () {
+              _incrementCounter();
+            },
+            child: Icon(
+              CupertinoIcons.add,
+              color: CupertinoColors.black,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+          ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+        child: Center(
+          //  Column(
+          child:
+              // mainAxisAlignment: MainAxisAlignment.center,
+              // children: <Widget>[
+              Text(
+            "You've tapped this button $_counter times",
+            style: TextStyle(fontSize: 36.0),
+            textAlign: TextAlign.center,
+          ),
+        )
+        // ])),
+        );
   }
 }
+
+const a = 5;
