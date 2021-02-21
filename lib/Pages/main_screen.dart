@@ -1,4 +1,5 @@
 import 'package:clarapulse/Pages/chat/user_cards.dart';
+import 'package:clarapulse/Pages/connect/container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -25,13 +26,10 @@ class HomeScreenWidgetState extends  State<HomeScreenWidget> {
       'Index 0: Profile',
       style: optionStyle,
     ),
+    ConnectContainerWidget(),
+    UserCardsWidget(),
     Text(
-      'Index 1: Connect',
-      style: optionStyle,
-    ),
-    UserCardWidget(),
-    Text(
-      'Index 3: Settings',
+      'Index 2: Settings',
       style: optionStyle,
     ),
   ];

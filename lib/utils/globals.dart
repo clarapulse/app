@@ -8,4 +8,3 @@ class UserData {
   String university;
   bool inHighSchool;
 }
-UserData localUser;

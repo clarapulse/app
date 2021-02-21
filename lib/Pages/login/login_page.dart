@@ -60,7 +60,6 @@ class LoginPageState extends State<LoginPage> {
           },
         );
         await _updateUserState(user);
-        localUser = UserData(user.email, user.displayName, user.photoURL);
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
