@@ -20,6 +20,7 @@ class ConnectContainerWidget extends StatefulWidget {
 }
 
 Future<List<dynamic>> fetchConnections() async {
+  print('fetch called');
   final response = await http.get(
       Uri.https('backend-6h662eujpa-wl.a.run.app', 'potentialconnections'),
       headers: await getAuthToken());
