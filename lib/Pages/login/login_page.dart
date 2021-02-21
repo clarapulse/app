@@ -54,7 +54,7 @@ class LoginPageState extends State<LoginPage> {
         String idToken = await user.getIdToken();
         print(idToken);
         http.post(
-          Uri.https('clarapulse.loca.lt', 'adduser'),
+          Uri.https('clarapulsse.loca.lt', 'adduser'),
           headers: <String, String>{
             'Authorization': idToken
           },
