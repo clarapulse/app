@@ -11,7 +11,7 @@ void main() async {
   await Firebase.initializeApp();
   Widget home = LoginPage();
   if (FirebaseAuth.instance.currentUser != null) {
-    home = HomeScreenWidget();
+    home = LoginPage();
   }
   runApp(MyApp(home));
 }
