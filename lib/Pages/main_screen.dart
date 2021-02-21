@@ -16,12 +16,13 @@ class HomeScreenWidget extends StatefulWidget {
   @override
   HomeScreenWidgetState createState() => HomeScreenWidgetState();
 }
-class HomeScreenWidgetState extends  State<HomeScreenWidget> {
+
+class HomeScreenWidgetState extends State<HomeScreenWidget> {
   static const String _title = 'ClaraPulse';
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  static List<Widget> _widgetOptions = <Widget>[
+  final List<Widget> _widgetOptions = <Widget>[
     Text(
       'Index 0: Profile',
       style: optionStyle,
