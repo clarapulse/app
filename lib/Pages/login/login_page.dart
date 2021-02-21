@@ -1,9 +1,12 @@
+import 'dart:convert';
+
 import 'package:clarapulse/utils/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../first_screen.dart';
+import '../main_screen.dart';
 import 'sign_in.dart';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   LoginPage({Key key}) : super(key: key);
@@ -41,6 +44,7 @@ class LoginPageState extends State<LoginPage> {
     await prefs.setString("userEmail", user.email);
     await prefs.setString("userPicture", user.photoURL);
     await prefs.setString("userEmail", user.displayName);
+    await prefs.setString("userToken", await user.getIdToken());
   }
 
   Widget _signInButton() {
@@ -48,6 +52,14 @@ class LoginPageState extends State<LoginPage> {
       splashColor: Colors.grey,
       onPressed: () async {
         User user = await signInWithGoogle();
+        String idToken = await user.getIdToken();
+        print(idToken);
+        http.post(
+          Uri.https('clarapulse.loca.lt', 'adduser'),
+          headers: <String, String>{
+            'Authorization': idToken
+          },
+        );
         await _updateUserState(user);
         localUser = LocalUser(user.email, user.displayName, user.photoURL);
         Navigator.of(context).push(

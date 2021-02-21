@@ -1,3 +1,4 @@
+import 'package:clarapulse/Pages/chat/user_cards.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -28,31 +29,7 @@ class HomeScreenWidgetState extends  State<HomeScreenWidget> {
       'Index 1: Connect',
       style: optionStyle,
     ),
-    Center(
-      child:Container(
-        height: 100,
-        child: Card(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              ListTile(
-                leading: ClipOval(
-                  child: Image.network(
-                    localUser.photoURL,
-                    fit: BoxFit.cover,
-                    width: 60.0,
-                    height: 60.0,
-                  )
-                ),
-                title: Text('Little Timmy'),
-                subtitle: Text('University of California Santa Barbara'),
-              ),
-            ],
-          ),
-        ),
-      ),
-    ),
+    UserCardWidget(),
     Text(
       'Index 3: Settings',
       style: optionStyle,
