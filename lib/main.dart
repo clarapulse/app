@@ -6,12 +6,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'Pages/login/login_page.dart';
 import 'utils/globals.dart';
 
-void main() async { 
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  // final SharedPreferences prefs = await SharedPreferences.getInstance();
   Widget home = LoginPage();
-  if (FirebaseAuth.instance.currentUser != null){
+  if (FirebaseAuth.instance.currentUser != null) {
     home = HomeScreenWidget();
   }
   runApp(MyApp(home));
