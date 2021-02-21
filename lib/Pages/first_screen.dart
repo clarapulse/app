@@ -99,8 +99,10 @@ class HomeScreenWidgetState extends  State<HomeScreenWidget> {
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue[800],
+        selectedItemColor: CupertinoColors.black,
         onTap: _onItemTapped,
+        showUnselectedLabels: true,
+        unselectedItemColor: CupertinoColors.inactiveGray,
       ),
     );
   }
