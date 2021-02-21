@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+chowscott974@gmail.com/RambunctiousP
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.

@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:http/http.dart' as http;
 
-
 class Set_Up_Form extends StatelessWidget {
   Set_Up_Form(this.university);
   String university;
@@ -38,14 +37,9 @@ class Set_Up_Form extends StatelessWidget {
             RoundedButton(
               text: "SUBMIT",
               press: () async {
-                http.post(
-                  Uri.https('clarapulsse.loca.lt', 'university'),
-                  headers: await getAuthToken(),
-                  body:{
-                    'hs_name':university,
-                    'major':major
-                  }
-                );
+                http.post(Uri.https('clarapulsse.loca.lt', 'university'),
+                    headers: await getAuthToken(),
+                    body: {'university_name': university, 'major': major});
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
