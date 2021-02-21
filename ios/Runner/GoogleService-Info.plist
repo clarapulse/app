@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>961292411219-nmq9daq5gq7e1ac0tt6mscg928r7qm4u.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.961292411219-nmq9daq5gq7e1ac0tt6mscg928r7qm4u</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>961292411219-47je3c3cd0ec4tc6hdbm4fapfv78svi2.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyASFAOeGvq_9rWJxuTqxeDFZ_IofbzC-P8</string>
+	<key>GCM_SENDER_ID</key>
+	<string>961292411219</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.clarapulse</string>
+	<key>PROJECT_ID</key>
+	<string>clarapulse</string>
+	<key>STORAGE_BUCKET</key>
+	<string>clarapulse.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:961292411219:ios:d2baea980bf5436a8201a6</string>
+</dict>
+</plist>

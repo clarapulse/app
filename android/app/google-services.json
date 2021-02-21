@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "961292411219",
+    "project_id": "clarapulse",
+    "storage_bucket": "clarapulse.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961292411219:android:27f55c47795965b78201a6",
+        "android_client_info": {
+          "package_name": "com.example.clarapulse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961292411219-t9h47i38r33o1vr1q6jiljnij7j681s2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.clarapulse",
+            "certificate_hash": "28176e078d68d177f0afcdb4073baa72b912e56e"
+          }
+        },
+        {
+          "client_id": "961292411219-45uolcav37id8g6ui99frdubtoqunglq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHXh1fe1tamJCi793i6ggEHqbAavBjrb8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961292411219-45uolcav37id8g6ui99frdubtoqunglq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
