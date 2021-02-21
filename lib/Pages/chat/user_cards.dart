@@ -17,7 +17,7 @@ class UserCardsWidget extends StatefulWidget {
 
 Future<dynamic> fetchConnections() async {
   final response = await http.get(
-      Uri.https('clarapulsse.loca.lt', 'connections'),
+      Uri.https('backend-6h662eujpa-wl.a.run.app', 'connections'),
       headers: await getAuthToken());
   if (response.statusCode == 200) {
     List<dynamic> post = jsonDecode(response.body);
@@ -44,7 +44,7 @@ class UserCardsWidgetState extends State<UserCardsWidget> {
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.hasData) {
             // Data fetched successfully, display your data here
-            if(snapshot.data.isEmpty()){
+            if (snapshot.data.isEmpty()) {
               return Center(child: Text('You have no active chats'));
             }
             return Column(

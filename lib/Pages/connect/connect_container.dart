@@ -21,7 +21,7 @@ class ConnectContainerWidget extends StatefulWidget {
 
 Future<List<dynamic>> fetchConnections() async {
   final response = await http.get(
-      Uri.https('clarapulsse.loca.lt', 'potentialconnections'),
+      Uri.https('backend-6h662eujpa-wl.a.run.app', 'potentialconnections'),
       headers: await getAuthToken());
   if (response.statusCode == 200) {
     List<dynamic> post = jsonDecode(response.body);
@@ -120,6 +120,11 @@ class ConnectContainerWidgetState extends State<ConnectContainerWidget> {
                     ),
                     items: snapshot.data
                         .map((card) {
+                          if (card['url'] == null) {
+                            card['url'] =
+                                'https://lh3.googleusercontent.com/-qkAwXpUfROE/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclnaJEKg9QnQmsed1KsGvtPYusnFA/s96-c/photo.jpg';
+                          }
+                          logger.w(card['url']);
                           return Builder(builder: (BuildContext context) {
                             return Container(
                                 height:
@@ -178,7 +183,7 @@ class ConnectContainerWidgetState extends State<ConnectContainerWidget> {
                                             onPressed: () async {
                                               await http.post(
                                                   Uri.https(
-                                                      'clarapulsse.loca.lt',
+                                                      'backend-6h662eujpa-wl.a.run.app',
                                                       'connections'),
                                                   headers: await getAuthToken(),
                                                   body: {
