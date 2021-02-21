@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'Components/body.dart';
+import 'components/body.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SetUpHighSchoolScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
