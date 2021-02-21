@@ -28,6 +28,7 @@ dependencies:
   flutter:
     sdk: flutter
   firebase_messaging: ^6.0.16
+  twilio_programmable_video: ^0.6.4
   firebase_auth: ^0.20.1
   google_sign_in: ^4.5.9
   shared_preferences: ^0.5.12+4

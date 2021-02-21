@@ -6,7 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Pages/login/login_page.dart';
 import 'Pages/login/sign_in.dart';
-import 'utils/globals.dart';
+import 'utils/fcm.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,6 +17,7 @@ void main() async {
     home = LoginPage();
   }
   final FirebaseMessaging _fcm = FirebaseMessaging();
+  await setupFCM();
   var x = await _fcm.getToken();
   print(x);
   runApp(MyApp(home));
