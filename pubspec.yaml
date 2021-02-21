@@ -27,6 +27,7 @@ dependencies:
       url: https://github.com/ewertonrp/logger_flutter
   flutter:
     sdk: flutter
+  firebase_messaging: ^6.0.16
   firebase_auth: ^0.20.1
   google_sign_in: ^4.5.9
   shared_preferences: ^0.5.12+4
