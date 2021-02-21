@@ -17,7 +17,7 @@ void _onConnectFailure(RoomConnectFailureEvent event) {
 
 Future<Room> connectToRoom(String room) async {
   var connectOptions = ConnectOptions(
-    'cc52c192fed2753cb69530944ed39f00',
+    'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiIsImN0eSI6InR3aWxpby1mcGE7dj0xIn0.eyJqdGkiOiJTSzIwNTgyYWIwNTJjYmYyZWM2ZTA5MGY4Y2EzN2UxMTE4LTE2MTM5MTY0NzEiLCJpc3MiOiJTSzIwNTgyYWIwNTJjYmYyZWM2ZTA5MGY4Y2EzN2UxMTE4Iiwic3ViIjoiQUNlNDhlZGRkN2MxZGVkYzdlOGY1OTFkMTY5NTA3NWVhOCIsImV4cCI6MTYxMzkyMDA3MSwiZ3JhbnRzIjp7ImlkZW50aXR5IjoiamtsIiwidmlkZW8iOnt9fX0.muswpblJnTi4DzT3DREPADCRyWPbsFFxVmwCjOQD28I',
     roomName: room, // Optional name for the room
     preferredAudioCodecs: [
       OpusCodec()
