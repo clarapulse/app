@@ -17,15 +17,15 @@ class ConnectContainerWidget extends StatefulWidget {
 }
 
 Future<List<dynamic>> fetchConnections() async {
-  final response = await http.get(
-      Uri.https('clarapulse.loca.lt', 'potentialconnections'),
-      headers: await getAuthToken());
-  if (response.statusCode == 200) {
-    List<UserData> post = jsonDecode(response.body).cast<List<UserData>>();
-    print(post);
-    return post;
-  } else {
-    throw Exception('Failed to load post');
+    final response = await http.get(Uri.https('clarapulsse.loca.lt', 'potentialconnections'),
+          headers: await getAuthToken());
+    if (response.statusCode == 200) {
+      List<UserData> post = jsonDecode(response.body).cast<List<UserData>>();
+      print(post);
+      return post;
+    } else {
+      throw Exception('Failed to load post');
+    }
   }
 }
 
