@@ -38,7 +38,7 @@ class Set_Up_Form extends StatelessWidget {
             RoundedButton(
               text: "SUBMIT",
               press: () async {
-                await http.post(
+                http.post(
                   Uri.https('clarapulsse.loca.lt', 'university'),
                   headers: await getAuthToken(),
                   body:{

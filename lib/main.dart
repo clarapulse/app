@@ -5,11 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'Pages/login/login_page.dart';
+import 'Pages/login/sign_in.dart';
 import 'utils/globals.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  signOutGoogle();
   Widget home = LoginPage();
   if (FirebaseAuth.instance.currentUser != null) {
     home = LoginPage();
