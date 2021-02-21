@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:clarapulse/utils/globals.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +13,15 @@ class ConnectContainer extends StatefulWidget {
 }
 
 class ConnectContainerState extends State<ConnectContainer> {
-  Future<http.Response> fetchConnections() {
-    return http.get(Uri.https('clarapulse.loca.lt', 'connections'));
+  Future<List<dynamic>> fetchConnections() async {
+    final response =
+        await http.get(Uri.https('clarapulse.loca.lt', 'connections'));
+    if (response.statusCode == 200) {
+      List<dynamic> post = jsonDecode(response.body);
+      return post;
+    } else {
+      throw Exception('Failed to load post');
+    }
   }
 
   @override
