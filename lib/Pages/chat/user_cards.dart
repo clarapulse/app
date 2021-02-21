@@ -16,15 +16,15 @@ class UserCardsWidget extends StatefulWidget {
 }
 
 Future<dynamic> fetchConnections() async {
-    final response = await http.get(Uri.https('clarapulsse.loca.lt', 'connections'),
-          headers: await getAuthToken());
-    if (response.statusCode == 200) {
-      dynamic post = jsonDecode(response.body).cast();
-      print(post);
-      return post;
-    } else {
-      throw Exception('Failed to load post');
-  }
+  final response = await http.get(
+      Uri.https('clarapulsse.loca.lt', 'connections'),
+      headers: await getAuthToken());
+  if (response.statusCode == 200) {
+    dynamic post = jsonDecode(response.body).cast();
+    print(post);
+    return post;
+  } else {
+    throw Exception('Failed to load post');
   }
 }
 
