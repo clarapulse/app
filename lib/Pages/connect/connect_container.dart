@@ -248,7 +248,7 @@ class ConnectContainerWidgetState extends State<ConnectContainerWidget> {
             // Data fetched successfully, display your data here
             return Center(child: Text('Something went wrong...'));
           }
-          return Center(child: Text('Loading...'));
+          return Center(child: CircularProgressIndicator());
         });
   }
 }

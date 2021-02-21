@@ -44,6 +44,9 @@ class UserCardsWidgetState extends State<UserCardsWidget> {
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.hasData) {
             // Data fetched successfully, display your data here
+            if(snapshot.data.isEmpty()){
+              return Center(child: Text('You have no active chats'));
+            }
             return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: snapshot.data
@@ -54,7 +57,7 @@ class UserCardsWidgetState extends State<UserCardsWidget> {
             // Data fetched successfully, display your data here
             return Center(child: Text('Something went wrong...'));
           }
-          return Center(child: Text('Loading...'));
+          return Center(child: CircularProgressIndicator());
         });
   }
 }
