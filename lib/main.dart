@@ -9,7 +9,7 @@ import 'utils/globals.dart';
 void main() async { 
   WidgetsFlutterBinding.ensureInitialized();
   Firebase.initializeApp();
-  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  // final SharedPreferences prefs = await SharedPreferences.getInstance();
   Widget home = LoginPage();
   if (FirebaseAuth.instance.currentUser != null){
     home = HomeScreenWidget();

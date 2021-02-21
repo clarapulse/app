@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:clarapulse/utils/globals.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../main_screen.dart';
 import 'sign_in.dart';
@@ -16,11 +16,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class LoginPageState extends State<LoginPage> {
-  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-
+  // Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Container(
         color: Colors.white,
@@ -40,10 +38,11 @@ class LoginPageState extends State<LoginPage> {
   }
 
   Future<void> _updateUserState(User user) async {
-    final SharedPreferences prefs = await _prefs;
-    await prefs.setString("userEmail", user.email);
-    await prefs.setString("userPicture", user.photoURL);
-    await prefs.setString("userName", user.displayName);
+    // final SharedPreferences prefs = await _prefs;
+    // await prefs.setString("userEmail", user.email);
+    // await prefs.setString("userPicture", user.photoURL);
+    // await prefs.setString("userEmail", user.displayName);
+    // await prefs.setString("userToken", await user.getIdToken());
   }
 
   Widget _signInButton() {
@@ -55,9 +54,7 @@ class LoginPageState extends State<LoginPage> {
         print(idToken);
         http.post(
           Uri.https('clarapulse.loca.lt', 'adduser'),
-          headers: <String, String>{
-            'Authorization': idToken
-          },
+          headers: <String, String>{'Authorization': idToken},
         );
         await _updateUserState(user);
         Navigator.of(context).push(
