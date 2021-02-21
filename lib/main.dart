@@ -1,5 +1,6 @@
 import 'package:clarapulse/Pages/main_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -13,6 +14,9 @@ void main() async {
   if (FirebaseAuth.instance.currentUser != null) {
     home = LoginPage();
   }
+  final FirebaseMessaging _fcm = FirebaseMessaging();
+  var x = await _fcm.getToken();
+  print(x);
   runApp(MyApp(home));
 }
 
@@ -27,6 +31,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: home,
+      debugShowCheckedModeBanner: false,
     );
   }
 }

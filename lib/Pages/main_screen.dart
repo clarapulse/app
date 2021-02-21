@@ -1,5 +1,6 @@
 import 'package:clarapulse/Pages/chat/user_cards.dart';
 import 'package:clarapulse/Pages/connect/connect_container.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -19,6 +20,7 @@ class HomeScreenWidget extends StatefulWidget {
 
 class HomeScreenWidgetState extends State<HomeScreenWidget> {
   static const String _title = 'ClaraPulse';
+  final FirebaseMessaging _fcm = FirebaseMessaging();
   int _selectedIndex = 2;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
@@ -38,6 +40,48 @@ class HomeScreenWidgetState extends State<HomeScreenWidget> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
+    });
+  }
+
+  Future<void> _showMyDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Confirm new connection'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Would you like to connect with Eddie?'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Yes'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text('No'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _fcm.configure(onMessage: (Map<String, dynamic> message) async {
+      print("onMessage: $message");
+      await _showMyDialog();
     });
   }
 
