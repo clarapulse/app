@@ -1,11 +1,13 @@
+import 'package:clarapulse/Components/background.dart';
 import 'package:clarapulse/Components/rounded_button.dart';
 import 'package:clarapulse/Components/rounded_input_field.dart';
+import 'package:clarapulse/Pages/CurrentMajorScreen/current_major_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'background.dart';
 
-class Body extends StatelessWidget {
+class Set_Up_Form extends StatelessWidget {
+  String university;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -24,14 +26,23 @@ class Body extends StatelessWidget {
               height: size.height * 0.35,
             ),
             RoundedInputField(
-              hintText: "Your High School",
-              onChanged: (value) {},
+              hintText: "Enter Your University",
+              onChanged: (value) {
+                university = value;
+              },
             ),
             RoundedButton(
               text: "NEXT",
-              press: () {},
+              press: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CurrentMajorScreen(university);
+                    },
+                  ),
+                );
+              },
             ),
-            SizedBox(height: size.height * 0.03),
           ],
         ),
       ),

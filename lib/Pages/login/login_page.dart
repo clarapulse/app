@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-import 'package:clarapulse/Pages/setup/setup_page.dart';
+
+import 'package:clarapulse/Pages/setupHighschoolQuestion/setup_highschool_page.dart';
 import 'package:clarapulse/utils/globals.dart';
 import 'package:flutter/material.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
@@ -60,7 +61,7 @@ class LoginPageState extends State<LoginPage> {
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {
-              return SignUpScreen();
+              return SetUpHighSchoolScreen();
             },
           ),
         );
