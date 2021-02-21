@@ -1,5 +1,5 @@
 import 'package:clarapulse/Pages/chat/user_cards.dart';
-import 'package:clarapulse/Pages/connect/container.dart';
+import 'package:clarapulse/Pages/connect/connect_container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

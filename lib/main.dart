@@ -12,7 +12,7 @@ void main() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   Widget home = LoginPage();
   if (FirebaseAuth.instance.currentUser != null){
-    home = LoginPage();
+    home = HomeScreenWidget();
   }
   runApp(MyApp(home));
 }

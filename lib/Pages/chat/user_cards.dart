@@ -17,8 +17,7 @@ class UserCardsWidget extends StatefulWidget {
 
 Future<dynamic> fetchConnections() async {
     final response = await http.get(Uri.https('clarapulse.loca.lt', 'connections'),
-          headers: await getAuthToken(),
-          );
+          headers: await getAuthToken());
     if (response.statusCode == 200) {
       dynamic post = jsonDecode(response.body).cast();
       print(post);
