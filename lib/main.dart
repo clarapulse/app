@@ -11,10 +11,9 @@ import 'utils/fcm.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  signOutGoogle();
   Widget home = LoginPage();
   if (FirebaseAuth.instance.currentUser != null) {
-    home = LoginPage();
+    home = HomeScreenWidget();
   }
   final FirebaseMessaging _fcm = FirebaseMessaging();
   await setupFCM();
