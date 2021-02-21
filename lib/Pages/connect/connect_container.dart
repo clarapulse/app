@@ -25,7 +25,7 @@ Future<List<dynamic>> fetchConnections() async {
       headers: await getAuthToken());
   if (response.statusCode == 200) {
     List<dynamic> post = jsonDecode(response.body);
-    logger.d(post);
+    // logger.d(post);
     return post;
   } else {
     throw Exception('Failed to load post');
@@ -78,6 +78,7 @@ class ConnectContainerWidgetState extends State<ConnectContainerWidget> {
 
   @override
   void initState() {
+    logger.d('init state called');
     super.initState();
     _post = fetchConnections();
   }
@@ -85,10 +86,10 @@ class ConnectContainerWidgetState extends State<ConnectContainerWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: fetchConnections(),
+        future: _post,
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.hasData) {
-            print(snapshot.data);
+            // print(snapshot.data);
             // Data fetched successfully, display your data here
             return Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -124,7 +125,17 @@ class ConnectContainerWidgetState extends State<ConnectContainerWidget> {
                             card['url'] =
                                 'https://lh3.googleusercontent.com/-qkAwXpUfROE/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclnaJEKg9QnQmsed1KsGvtPYusnFA/s96-c/photo.jpg';
                           }
-                          logger.w(card['url']);
+                          if (card['is_highschool'] == null) {
+                            card['is_highschool'] = false;
+                          }
+
+                          if (card['highschool'] == null) {
+                            card['highschool'] = '';
+                          }
+                          if (card['university'] == null) {
+                            card['university'] = '';
+                          }
+
                           return Builder(builder: (BuildContext context) {
                             return Container(
                                 height:

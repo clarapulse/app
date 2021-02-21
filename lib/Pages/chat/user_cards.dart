@@ -44,7 +44,7 @@ class UserCardsWidgetState extends State<UserCardsWidget> {
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.hasData) {
             // Data fetched successfully, display your data here
-            if (snapshot.data.isEmpty()) {
+            if (snapshot.data.isEmpty) {
               return Center(child: Text('You have no active chats'));
             }
             return Column(
