@@ -1,3 +1,4 @@
+import 'package:clarapulse/utils/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,7 +17,6 @@ class LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Container(
         color: Colors.white,
@@ -37,14 +37,10 @@ class LoginPageState extends State<LoginPage> {
 
   Future<void> _updateUserState(User user) async {
     final SharedPreferences prefs = await _prefs;
-    final String userEmail = user.email;
-    final String userPicture = user.photoURL;
-    final String userName = user.displayName;
-    setState(() async {
-      await prefs.setString("userEmail", userEmail);
-      await prefs.setString("userPicture", userPicture);
-      await prefs.setString("userEmail", userName);
-    });
+    await prefs.setString("userEmail", user.email);
+    await prefs.setString("userPicture", user.photoURL);
+    await prefs.setString("userEmail", user.displayName);
+    localUser = LocalUser(user.email, user.displayName, user.photoURL);
   }
 
   Widget _signInButton() {
