@@ -4,7 +4,7 @@ import 'package:clarapulse/utils/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../main_screen.dart';
+import '../home_container.dart';
 import 'sign_in.dart';
 import 'package:http/http.dart' as http;
 

@@ -1,4 +1,4 @@
-import 'package:clarapulse/Pages/main_screen.dart';
+import 'package:clarapulse/Pages/home_container.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
