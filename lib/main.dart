@@ -1,4 +1,4 @@
-import 'package:clarapulse/Pages/home_container.dart';
+import 'package:clarapulse/Pages/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,7 +11,7 @@ void main() async {
   final SharedPreferences prefs = await SharedPreferences.getInstance();
   Widget home = LoginPage();
   if (prefs.getString('userName') != null ){
-    localUser = LocalUser(prefs.getString('userEmail'), prefs.getString('userName'), prefs.getString('userPicture'));
+    localUser = UserData(prefs.getString('userEmail'), prefs.getString('userName'), prefs.getString('userPicture'));
     home = HomeScreenWidget();
   }
   

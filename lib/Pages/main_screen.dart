@@ -6,7 +6,6 @@ import 'login/login_page.dart';
 import 'login/sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:clarapulse/utils/globals.dart';
-import 'package:clarapulse/Pages/connect/container.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
@@ -26,7 +25,10 @@ class HomeScreenWidgetState extends  State<HomeScreenWidget> {
       'Index 0: Profile',
       style: optionStyle,
     ),
-    ConnectContainer(),
+    Text(
+      'Index 1: Connect',
+      style: optionStyle,
+    ),
     UserCardWidget(),
     Text(
       'Index 3: Settings',

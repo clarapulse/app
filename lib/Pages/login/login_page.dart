@@ -4,7 +4,7 @@ import 'package:clarapulse/utils/globals.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import '../home_container.dart';
+import '../main_screen.dart';
 import 'sign_in.dart';
 import 'package:http/http.dart' as http;
 
@@ -43,8 +43,7 @@ class LoginPageState extends State<LoginPage> {
     final SharedPreferences prefs = await _prefs;
     await prefs.setString("userEmail", user.email);
     await prefs.setString("userPicture", user.photoURL);
-    await prefs.setString("userEmail", user.displayName);
-    await prefs.setString("userToken", await user.getIdToken());
+    await prefs.setString("userName", user.displayName);
   }
 
   Widget _signInButton() {
@@ -61,7 +60,7 @@ class LoginPageState extends State<LoginPage> {
           },
         );
         await _updateUserState(user);
-        localUser = LocalUser(user.email, user.displayName, user.photoURL);
+        localUser = UserData(user.email, user.displayName, user.photoURL);
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) {

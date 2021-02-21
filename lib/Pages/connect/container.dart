@@ -27,7 +27,7 @@ class ConnectContainerState extends State<ConnectContainer> {
   @override
   void initState() {
     super.initState();
-    fetchConnections();
+    // fetchConnections();
   }
 
   @override
