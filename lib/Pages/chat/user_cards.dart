@@ -20,8 +20,8 @@ Future<dynamic> fetchConnections() async {
       Uri.https('clarapulsse.loca.lt', 'connections'),
       headers: await getAuthToken());
   if (response.statusCode == 200) {
-    dynamic post = jsonDecode(response.body).cast();
-    print(post);
+    List<dynamic> post = jsonDecode(response.body);
+
     return post;
   } else {
     throw Exception('Failed to load post');
@@ -34,7 +34,7 @@ class UserCardsWidgetState extends State<UserCardsWidget> {
   @override
   void initState() {
     super.initState();
-    // _post = fetchConnections();
+    _post = fetchConnections();
   }
 
   @override
@@ -45,34 +45,16 @@ class UserCardsWidgetState extends State<UserCardsWidget> {
           if (snapshot.hasData) {
             // Data fetched successfully, display your data here
             return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: snapshot.data
                     .map((userInfo) => UserCardWidget(userInfo))
-                    .toList());
+                    .toList()
+                    .cast<Widget>());
           } else if (snapshot.hasError) {
             // Data fetched successfully, display your data here
             return Center(child: Text('Something went wrong...'));
           }
-          List<UserData> list = [
-            UserData.fullProfile(
-                "example@gmail.com",
-                "John Doe",
-                "https://lh5.googleusercontent.com/-gKe8qUDkXJc/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclhbf3_xwxozpf8XweRZrtOC91oIA/s96-c/photo.jpg",
-                "",
-                "University of California San Diego",
-                false),
-            UserData.fullProfile(
-                "example@gmail.com",
-                "Jane Doe",
-                "https://lh5.googleusercontent.com/-gKe8qUDkXJc/AAAAAAAAAAI/AAAAAAAAAAA/AMZuuclhbf3_xwxozpf8XweRZrtOC91oIA/s96-c/photo.jpg",
-                "Santa Barbara High School",
-                "",
-                true)
-          ];
-          return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children:
-                  list.map((userInfo) => UserCardWidget(userInfo)).toList());
+          return Center(child: Text('Loading...'));
         });
   }
 }

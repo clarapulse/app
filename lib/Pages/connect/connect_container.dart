@@ -3,11 +3,14 @@ import 'dart:convert';
 import 'package:clarapulse/Pages/chat/user_card.dart';
 import 'package:clarapulse/Pages/login/sign_in.dart';
 import 'package:clarapulse/utils/globals.dart';
+import 'package:clarapulse/utils/logger.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:carousel_slider/carousel_slider.dart';
+
+var logger = getLogger();
 
 class ConnectContainerWidget extends StatefulWidget {
   ConnectContainerWidget({Key key}) : super(key: key);
@@ -21,8 +24,8 @@ Future<List<dynamic>> fetchConnections() async {
       Uri.https('clarapulsse.loca.lt', 'potentialconnections'),
       headers: await getAuthToken());
   if (response.statusCode == 200) {
-    List<UserData> post = jsonDecode(response.body).cast<List<UserData>>();
-    print(post);
+    List<dynamic> post = jsonDecode(response.body);
+    logger.d(post);
     return post;
   } else {
     throw Exception('Failed to load post');
@@ -76,7 +79,7 @@ class ConnectContainerWidgetState extends State<ConnectContainerWidget> {
   @override
   void initState() {
     super.initState();
-    // _post = fetchConnections();
+    _post = fetchConnections();
   }
 
   @override
@@ -87,16 +90,7 @@ class ConnectContainerWidgetState extends State<ConnectContainerWidget> {
           if (snapshot.hasData) {
             print(snapshot.data);
             // Data fetched successfully, display your data here
-            return Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: snapshot.data
-                    .map((userInfo) => UserCardWidget(userInfo))
-                    .toList());
-          } else if (snapshot.hasError) {
-            // Data fetched successfully, display your data here
-            return Center(child: Text('Something went wrong...'));
-          }
-          return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+            return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
             SizedBox(height: 10),
             Container(
               height: 64,
@@ -122,7 +116,7 @@ class ConnectContainerWidgetState extends State<ConnectContainerWidget> {
                   });
                 },
               ),
-              items: list.map((card) {
+              items: snapshot.data.map((card) {
                 return Builder(builder: (BuildContext context) {
                   return Container(
                       height: MediaQuery.of(context).size.height * 0.30,
@@ -139,41 +133,51 @@ class ConnectContainerWidgetState extends State<ConnectContainerWidget> {
                                 SizedBox(height: 60),
                                 ClipOval(
                                     child: Image.network(
-                                  card.photoURL,
+                                  card['url'],
                                   fit: BoxFit.cover,
                                   width: 125.0,
                                   height: 125.0,
                                 )),
                                 SizedBox(height: 50),
-                                Text(card.name,
+                                Text(card['name'],
                                     style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 22.0,
                                         fontWeight: FontWeight.bold)),
                                 SizedBox(height: 10),
                                 Text(
-                                    (card.inHighSchool)
-                                        ? card.highSchool
-                                        : card.university,
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14.0,
-                                    )),
+                                    (card['is_highschool'])
+                                        ? card['highschool']
+                                        : card['university'],
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14.0,
+                                        )),
                                 SizedBox(height: 10),
                                 Text(
-                                    (card.inHighSchool)
+                                    (card['is_highschool'])
                                         ? "Prospective Major: " +
                                             "Computer Science"
                                         : "Major: " + "Computer Science",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 14.0,
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 14.0,
                                     )),
                                 SizedBox(height: 30),
                                 RaisedButton(
                                   splashColor:
                                       CupertinoColors.darkBackgroundGray,
-                                  onPressed: () async {},
+                                  onPressed: () async {
+                                    await http.post(
+                                      Uri.https('clarapulsse.loca.lt', 'connections'),
+                                      headers: await getAuthToken(),
+                                      body:{
+                                        'who':card['user_id']
+                                      });
+                                    setState(() {});
+                                  },
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(30)),
                                   highlightElevation: 0,
@@ -206,7 +210,7 @@ class ConnectContainerWidgetState extends State<ConnectContainerWidget> {
                             ),
                           )));
                 });
-              }).toList(),
+              }).toList().cast<Widget>(),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -225,6 +229,11 @@ class ConnectContainerWidgetState extends State<ConnectContainerWidget> {
               }),
             ),
           ]);
+          } else if (snapshot.hasError) {
+            // Data fetched successfully, display your data here
+            return Center(child: Text('Something went wrong...'));
+          }
+          return Center(child: Text('Loading...'));
         });
   }
 }

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class UserCardWidget extends StatelessWidget{
   UserCardWidget(this.userInfo, {Key key}) : super(key: key);
   
-  final UserData userInfo;
+  final dynamic userInfo;
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +19,14 @@ class UserCardWidget extends StatelessWidget{
               ListTile(
                 leading: ClipOval(
                   child: Image.network(
-                    userInfo.photoURL,
+                    userInfo['url'],
                     fit: BoxFit.cover,
                     width: 60.0,
                     height: 60.0,
                   )
                 ),
-                title: Text(userInfo.name),
-                subtitle: Text(userInfo.inHighSchool ? userInfo.highSchool : userInfo.university),
+                title: Text(userInfo['name']),
+                subtitle: Text(userInfo['is_highschool'] ? userInfo['highschool'] : userInfo['university']),
               ),
             ],
           ),
