@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'first_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import '../first_screen.dart';
 import 'sign_in.dart';
 
 class LoginPage extends StatefulWidget {
+  LoginPage({Key key}) : super(key: key);
+
   @override
-  _LoginPageState createState() => _LoginPageState();
+  LoginPageState createState() => LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class LoginPageState extends State<LoginPage> {
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: Container(
         color: Colors.white,
@@ -29,19 +35,31 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
+  Future<void> _updateUserState(User user) async {
+    final SharedPreferences prefs = await _prefs;
+    final String userEmail = user.email;
+    final String userPicture = user.photoURL;
+    final String userName = user.displayName;
+    setState(() async {
+      await prefs.setString("userEmail", userEmail);
+      await prefs.setString("userPicture", userPicture);
+      await prefs.setString("userEmail", userName);
+    });
+  }
+
   Widget _signInButton() {
     return OutlineButton(
       splashColor: Colors.grey,
-      onPressed: () {
-        signInWithGoogle().whenComplete(() {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) {
-                return FirstScreen();
-              },
-            ),
-          );
-        });
+      onPressed: () async {
+        User user = await signInWithGoogle();
+        await _updateUserState(user);
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return FirstScreen();
+            },
+          ),
+        );
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(40)),
       highlightElevation: 0,

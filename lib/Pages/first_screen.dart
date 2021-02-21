@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'login_page.dart';
-import 'sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'login/login_page.dart';
+import 'login/sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:clarapulse/utils/globals.dart';
 
 class FirstScreen extends StatelessWidget {
   @override
@@ -21,7 +24,7 @@ class FirstScreen extends StatelessWidget {
             children: <Widget>[
               CircleAvatar(
                 backgroundImage: NetworkImage(
-                  imageURL,
+                  localUser.photoURL
                 ),
                 radius: 60,
                 backgroundColor: Colors.transparent,
@@ -35,7 +38,7 @@ class FirstScreen extends StatelessWidget {
                     color: Colors.black54),
               ),
               Text(
-                name,
+                localUser.name,
                 style: TextStyle(
                     fontSize: 25,
                     color: Colors.deepPurple,
@@ -50,7 +53,7 @@ class FirstScreen extends StatelessWidget {
                     color: Colors.black54),
               ),
               Text(
-                email,
+                localUser.email,
                 style: TextStyle(
                     fontSize: 25,
                     color: Colors.deepPurple,

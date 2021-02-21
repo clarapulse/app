@@ -1,10 +1,23 @@
+import 'package:clarapulse/Pages/first_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'Pages/login/login_page.dart';
+import 'utils/globals.dart';
 
-import 'login_page.dart';
-
-void main() => runApp(MyApp());
+void main() async { 
+  final SharedPreferences prefs = await SharedPreferences.getInstance();
+  Widget home = LoginPage();
+  if (prefs.getString('userName') != null ){
+    localUser = LocalUser(prefs.getString('userEmail'), prefs.getString('userName'), prefs.getString('userPicture'));
+    home = FirstScreen();
+  }
+  
+  runApp(MyApp(home));
+}
 
 class MyApp extends StatelessWidget {
+  MyApp(this.home);
+  final Widget home;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,7 +25,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginPage(),
+      home: home,
     );
   }
 }
