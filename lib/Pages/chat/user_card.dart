@@ -89,7 +89,9 @@ class UserCardWidget extends StatelessWidget {
         onTap: () {
           Navigator.push(
             context,
-            CupertinoPageRoute(builder: (context) => ChatWidget('lol', 'idk')),
+            CupertinoPageRoute(
+                builder: (context) =>
+                    ChatWidget(userInfo['name'].split(' ')[0], 'idk')),
           );
         },
         child: Center(

@@ -143,13 +143,13 @@ class ConnectContainerWidgetState extends State<ConnectContainerWidget> {
                                             width: 125.0,
                                             height: 125.0,
                                           )),
-                                          SizedBox(height: 50),
+                                          SizedBox(height: 30),
                                           Text(card['name'],
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontSize: 22.0,
                                                   fontWeight: FontWeight.bold)),
-                                          SizedBox(height: 10),
+                                          SizedBox(height: 15),
                                           Text(
                                               (card['is_highschool'])
                                                   ? card['highschool']
