@@ -10,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:clarapulse/utils/globals.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import './profile/profilewidget.dart';
 
 class HomeScreenWidget extends StatefulWidget {
   HomeScreenWidget({Key key}) : super(key: key);
@@ -20,74 +21,12 @@ class HomeScreenWidget extends StatefulWidget {
 
 class HomeScreenWidgetState extends State<HomeScreenWidget> {
   User user = FirebaseAuth.instance.currentUser;
+
   static const String _title = 'ClaraPulse';
   final FirebaseMessaging _fcm = FirebaseMessaging();
   int _selectedIndex = 2;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
-  final List<Widget> _widgetOptions = <Widget>[
-    Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [Colors.blue[100], Colors.blue[400]],
-          ),
-        ),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.max,
-            children: <Widget>[
-              CircleAvatar(
-                backgroundImage: NetworkImage(
-                  user.photoURL,
-                ),
-                radius: 60,
-                backgroundColor: Colors.transparent,
-              ),
-              SizedBox(height: 40),
-              Text(
-                'NAME',
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black54),
-              ),
-              Text(
-                user.displayName,
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.deepPurple,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 20),
-              Text(
-                'EMAIL',
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black54),
-              ),
-              Text(
-                user.email,
-                style: TextStyle(
-                    fontSize: 25,
-                    color: Colors.deepPurple,
-                    fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 40)
-            ],
-          ),
-        ),
-      ),
-    ConnectContainerWidget(),
-    UserCardsWidget(),
-    Text(
-      'Index 2: Settings',
-      style: optionStyle,
-    ),
-  ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -139,6 +78,16 @@ class HomeScreenWidgetState extends State<HomeScreenWidget> {
 
   @override
   Widget build(BuildContext context) {
+    final List<Widget> _widgetOptions = <Widget>[
+      ProfileWidget(user),
+      ConnectContainerWidget(),
+      UserCardsWidget(),
+      Text(
+        'Index 2: Settings',
+        style: optionStyle,
+      ),
+    ];
+
     return Scaffold(
       appBar: AppBar(title: const Text(_title)),
       body: Container(

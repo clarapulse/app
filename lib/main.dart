@@ -12,8 +12,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   Widget home = LoginPage();
+  signOutGoogle(); // for demo
   if (FirebaseAuth.instance.currentUser != null) {
-    home = HomeScreenWidget();
+    // home = HomeScreenWidget();
   }
   final FirebaseMessaging _fcm = FirebaseMessaging();
   await setupFCM();

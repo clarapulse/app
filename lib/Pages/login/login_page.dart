@@ -53,7 +53,7 @@ class LoginPageState extends State<LoginPage> {
         User user = await signInWithGoogle();
         String idToken = await user.getIdToken();
         http.post(
-          Uri.https('backend-6h662eujpa-wl.a.run.app', 'adduser'),
+          Uri.https('clarapulsse.loca.lt', 'adduser'),
           headers: <String, String>{'Authorization': idToken},
         );
         await _updateUserState(user);

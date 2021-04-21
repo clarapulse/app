@@ -22,7 +22,7 @@ class ConnectContainerWidget extends StatefulWidget {
 Future<List<dynamic>> fetchConnections() async {
   print('fetch called');
   final response = await http.get(
-      Uri.https('backend-6h662eujpa-wl.a.run.app', 'potentialconnections'),
+      Uri.https('clarapulsse.loca.lt', 'potentialconnections'),
       headers: await getAuthToken());
   if (response.statusCode == 200) {
     List<dynamic> post = jsonDecode(response.body);
@@ -195,7 +195,7 @@ class ConnectContainerWidgetState extends State<ConnectContainerWidget> {
                                             onPressed: () async {
                                               await http.post(
                                                   Uri.https(
-                                                      'backend-6h662eujpa-wl.a.run.app',
+                                                      'clarapulsse.loca.lt',
                                                       'connections'),
                                                   headers: await getAuthToken(),
                                                   body: {
